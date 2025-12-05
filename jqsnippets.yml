@@ -1,0 +1,108 @@
+matches:
+  # disable JQ
+  - trigger: "?JS"
+    replace: "?DISABLE_SYSPREF_IntranetUserJS=1"
+  - trigger: "&JS"
+    replace: "&DISABLE_SYSPREF_IntranetUserJS=1"
+  - trigger: "?PJS"
+    replace: "?DISABLE_SYSPREF_OPACUserJS=1"
+  - trigger: "&0JS"
+    replace: "&DISABLE_SYSPREF_OPACUserJS=1"
+  # disable CSS
+  - trigger: "?CSS"
+    replace: "?DISABLE_SYSPREF_IntranetUserCSS=1"
+  - trigger: "&CSS"
+    replace: "&DISABLE_SYSPREF_IntranetUserCSS=1"
+
+  - trigger: "?OCSS"
+    replace: "?DISABLE_SYSPREF_OPACUserCSS=1"
+  - trigger: "&OCSS"
+    replace: "&DISABLE_SYSPREF_OPACUserCSS=1"
+
+  #Hide public note on search results with link 112519
+  - trigger: "$$url"
+    replace: |
+              if ( $('#results').length )  {
+                $("tbody tr").each(function() {
+                    let this_row = $(this);
+                    let biblioId = $(this).find('input[name="biblionumber"]').val();
+                    $.ajax({
+                        url: "/api/v1/public/biblios/" + biblioId,
+                        method: "GET",
+                        accepts: {"*": "application/marc-in-json" },
+                        success: function(response) {
+                            response.fields.forEach( function(item){
+                	              if ( Object.keys(item)[0] == '856' ) {
+                               	 item["856"].subfields.forEach( function(sub) {
+                        	           if ( Object.keys(sub)[0] == 'y' && this_row.find('.ebook').length ) {
+                                              this_row.find('.ebook').text(sub["y"])
+                                         }
+                                      })
+                                 }
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.log("AJAX error:", error);
+                        }
+                    });
+                 });
+                }
+
+
+# Rename Label on specific page(s)
+  - trigger: "$LaBl"
+    replace: |
+              //-----Begin Rename Label on specific page(s)---------- 
+              if (window.location.href.indexOf("memberentry.pl") > -1) {
+                  $("label:contains('Library:')").text("Home Library:");
+              }
+              //-----Begin Rename Label on specific page(s)----------
+
+# Change messages to HTML on checkin screen
+  - trigger: "$$html"
+    replace: |
+              //-----BEGIN Change messages to HTML on checkin screen----------
+              if (window.location.href.indexOf("memberentry.pl") > -1) {
+                  $('#checkedintable > tbody > tr > td.ci-note > p > span').each(function() {
+                        $(this).toHtml();
+                  )};
+              }
+              //----- END Change messages to HTML on checkin screen----------
+
+# change News Box background color to make it easier to read
+  - trigger: "$$news"
+    replace: |
+              //-------BEGIN change News Box background color to make it easier to read//---------------------------
+              $("#area-news").css("background-color", "#E0ECF8");
+              //--------------------END change News Box background color to make it easier to read------------------
+
+# Hide/show holds that haven't shipped yet
+  - trigger: "$$shipped"
+    replace: |
+              //------------------------------------BEGIN Hide/Show items that have not shipped--------------------
+                  var new_btn = $('<button id="0waiting">Hide/Show items that have not shipped</button>');
+                  new_btn.prependTo('#reserves');
+                  new_btn.prependTo('#onhold');
+                  $('#0waiting').click(function() {
+                      $("td:nth-child(7n):contains('1'),td:nth-child(7):contains('2'),td:nth-child(7):contains('3'),td:nth-child(7):contains('4'),td:nth-child(7):contains('5'),td:nth-child(7):contains('6'),td:nth-child(7):contains('7'),td:nth-child(7):contains('8'),td:nth-child(7):contains('9')").parent().toggle();
+                  });
+              //----------------------------------------END Hide/Show items that have not shipped --------------------
+
+ # Make the dropdowns show on search automatically
+  - trigger: "$$search"
+    replace: |
+              //---Begin automatically open search options beginning in 22.11
+              $(document).ready(function () {
+                  if ( $('#catalog_search').length ) {
+                      let mainform_container = $('#search-form').parent();
+                      if ( $('#catalog_search .advsearch').length ) {
+                      	mainform_container.prepend( $('#catalog_search .advsearch') );
+                          $('#catalog_search .advsearch').css('width' , '100px')
+                      }
+                      if ( $('#catalog_search #select_library').length ) {
+                      	mainform_container.append( $('#catalog_search #select_library') );
+                      }
+                      $('.form-extra-content-toggle').hide();
+                  }
+              });
+              //---End automatically open search options beginning in 22.11

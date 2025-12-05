@@ -1,0 +1,66 @@
+matches:
+  # edit av button
+  - trigger: "//AvE"
+    replace: |
+              CONCAT('<a  class="btn btn-info" href=\"/cgi-bin/koha/admin/authorised_values.pl?op=add_form&id=', a.id, '\&" target="_blank" >', 'Edit', '<a>') AS 'Edit'"
+
+  # edit item button
+  - trigger: "//EiB"
+    replace: |
+              CONCAT('<a  class="btn" href=\"/cgi-bin/koha/cataloguing/additem.pl?op=edititem&biblionumber=', i.biblionumber, '\&itemnumber=', i.itemnumber ,'\&" target="_blank" >', 'Edit', '<a>') AS 'Edit Item'
+
+  # manage ill request button
+  - trigger: "//MrB"
+    replace: |
+             CONCAT('<a  class="btn" href=\"/cgi-bin/koha/ill/ill-requests.pl?op=illview&illrequest_id=', r.biblionumber, ,'\&" target="_blank" >', 'Manage request', '<a>') AS 'Manage request'
+  # reserves + oldreserves
+  - trigger: "//HoH"
+    replace: |
+              FROM borrowers b
+              INNER JOIN (
+                  SELECT * FROM reserves
+                  UNION
+                  SELECT *  FROM old_reserves) AS hold USING  (borrowernumber)
+  #empty home or holding
+  - trigger: "//nohome"
+    replace: |
+              SELECT itemnumber, homebranch, holdingbranch
+              FROM items
+              WHERE ((homebranch IS NULL) OR (holdingbranch IS NULL))
+              
+  #self reg card number checker
+  - trigger: ".?sRc"
+    replace: |
+              select cardnumber,length(cardnumber), CONCAT('<a href=\"/cgi-bin/koha/members/memberentry.pl?op=modify&borrowernumber=', borrowernumber, '&step=3\">', borrowernumber, '</a>' ) AS borrowernumber, borrowers.userid
+              from borrowers where cardnumber regexp '^\\d+$' 
+              order by length(cardnumber) desc, cardnumber desc 
+              LIMIT 500
+             
+  - trigger: "//items"
+    replace: |
+              LEFT JOIN items i on (i.
+
+  - trigger: "//bibsq"
+    replace: |
+              LEFT JOIN biblios b on (b.
+              
+  - trigger: "//reservesql"
+    replace: |
+              LEFT JOIN reserves r on (r.
+              
+  - trigger: "//oldressql"
+    replace: |
+              LEFT JOIN old_reserves o on (o.              
+              
+  - trigger: "//borsql"
+    replace: |
+              LEFT JOIN borrowers p on (p.                            
+              
+  - trigger: "//conc"
+    replace: |
+              CONCAT('$|$', '') AS 
+              
+  - trigger: "//gconc"
+    replace: |
+              GROUP_CONCAT('$|$', '<br />') AS
+              GROUP BY

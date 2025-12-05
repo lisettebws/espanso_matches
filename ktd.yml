@@ -1,0 +1,21 @@
+matches:
+  # X Power Tools Barcodes
+  - trigger: "?xp1"
+    replace: "39999000000252 " 
+  - trigger: "?xp2"
+    replace: "39999000000238"
+  # Conspirator Barcodes
+  - trigger: "?con1"
+    replace: "39999000000290"
+  - trigger: "?con2"
+    replace: "39999000000276"
+  # Source
+  - trigger: "?sba"
+    replace: "source shared/.bash_aliases"
+  - trigger: "?scf"
+    replace: "source shared/.custom_bash_commands.sh"
+    # patrons
+  - trigger: "?hen"
+    replace: "23529000035676"
+  - trigger: "?ed"
+    replace: "23529001000463"

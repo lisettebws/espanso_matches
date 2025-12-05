@@ -1,0 +1,13 @@
+matches:
+- trigger: //edu
+  replace: I'm reassigning this ticket to our education team, to answer your questions, as well as any others you may have.
+- trigger: //impedu
+  replace: I'm reassigning this ticket to $|$, the educator on your implementation, to answer your questions, as well as any others you may have.
+- trigger: //data
+  replace: I'm reassigning this ticket to our data team. Please be aware that we have a backlog of report requests and it may take some time to get this back to you. If this has a deadline, please let us know and we will do our best to accommodate. Thank you for understanding!
+- trigger: //backlog
+  replace: Please be aware that we have a backlog of requests and it may take some time to get this back to you. If this has a deadline, please let us know and we will do our best to accommodate. Thank you for understanding!
+- trigger: //impdata
+  replace: I'm reassigning this ticket to $|$, the data librarian on your migration to answer your questions.
+- trigger: //sys
+  replace: I'm reassigning this ticket to the systems team, to answer your questions, as well as any others you may have.

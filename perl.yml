@@ -1,0 +1,15 @@
+matches:
+  # Run a perl script
+- trigger: "?perl"
+  replace: "PERL5LIB=/usr/share/koha/lib:. perl "
+- trigger: ?itqd
+  replace: PERL5LIB=/usr/share/koha/lib:. perl Koha/Plugin/Com/Theke/INNReach/scripts/task_queue_daemon.pl
+- trigger: ?gcsd
+  replace: PERL5LIB=/usr/share/koha/lib:. perl Koha/Plugin/Com/Theke/INNReach/scripts/get_central_servers_data.pl
+- trigger: ?cont
+  replace: PERL5LIB=/usr/share/koha/lib:. perl Koha/Plugin/Com/Theke/INNReach/scripts/contribute_data.pl --central_server $|$ 
+- trigger: ?syan
+  replace: PERL5LIB=/usr/share/koha/lib:. perl Koha/Plugin/Com/Theke/INNReach/scripts/sync_agencies.pl
+- trigger: ?dcob
+  replace: PERL5LIB=/usr/share/koha/lib:. perl Koha/Plugin/Com/Theke/INNReach/scripts/contribute_data.pl --central_server $|$ --decontribute --biblios --biblio_id
+

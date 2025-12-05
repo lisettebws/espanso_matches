@@ -1,0 +1,96 @@
+matches:
+  # random ticket lines for daily 
+  - trigger: "//tickets"
+    replace: "{{tickets}}"
+    vars:
+      - name: tickets
+        type: random
+        params:
+          choices:
+            - "All the tickets!"
+            - "Tickets, tickets, tickets"
+            - "Answer tickets"
+            - ":tickets:"
+            - ":ticket_:"
+            - ":ticket:"
+            - ":all_the_tickets:"
+            - ":golden_ticket:"
+            - ":admission_tickets:"
+
+  - trigger: "//positive"
+    replace: "{{positive}}"
+    vars:
+      - name: positive
+        type: random
+        params:
+          choices:
+            - ":frog_dance:"
+            - ":turtle_dance:"
+            - ":doge_dance:"
+            - ":cat_dance:"
+            - ":dancehotdog:"
+            - ":imp_dance:"
+            - ":robot_dance:"
+            - ":donkey-kong-dance:"
+            - ":gremlin-dance:"
+            - ":arthur_dance:"
+            - ":chicken-dance:"
+            - ":blob-dance:"
+            - ":fire_dance:"
+            - ":mario_luigi_dance:"
+            - ":party_blob:"
+            - ":partywalrus:"
+            - ":party_cat:"
+            - ":party_wombat:"
+            - ":partyparrot:"
+            - ":bee_party:"
+            - ":dog_party:"
+            - ":meow_party:"
+            - ":yay-tada:"
+            - ":slayyyed:"
+            - ":party-business:"
+            
+  - trigger: "//learnemo"
+    replace: "{{learned}}"
+    vars:
+      - name: learned
+        type: random
+        params:
+          choices:
+            - ":today_i_learned:"
+            - ":brain_party:"
+            - ":galaxy_brain:"
+            - ":learning:"
+            - ":noted_rat:"
+            - ":noted:"
+            - ":shocked_face_with_exploding_head:"
+            
+  - trigger: "//blockers"
+    replace: "{{blockers}}"
+    vars:
+      - name: blockers
+        type: random
+        params:
+          choices:
+            - ":blocked:"
+            - ":minecraft_block_bounce:"
+            - ":lesigh:"
+            - ":confused_rat:"
+            - ":screamsbq:"
+            - ":sadblob:"
+            - ":cat_scream:"
+            
+  - trigger: "//today"
+    replace: "{{today}}"
+    vars:
+      - name: today
+        type: random
+        params:
+          choices:
+            - ":calendar_today:"
+            - ":spiral_calendar_pad:"
+            - ":calendar:"
+            - ":timer_clock:"
+            - ":hourglass:"
+            - ":hourglass_flowing_sand:"
+            - ":list:"

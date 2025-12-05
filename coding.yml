@@ -1,0 +1,40 @@
+matches: 
+ # TT
+  - trigger: "[[["
+    replace: "[% "
+
+  - trigger: "]]]"
+    replace: " %]"
+
+  - trigger: "[if]"
+    replace: "[% IF $|$ %]"
+
+  - trigger: "[else]"
+    replace: "[% ELSE %]"
+
+  - trigger: "[elsif]"
+    replace: "[% ELSIF $|$ %]"
+
+  - trigger: "[end]"
+    replace: "[% END %]"
+    
+  - trigger: "[inc]"
+    replace: "[% INCLUDE $|$ %]"
+
+  - trigger: "[use]"
+    replace: "[% USE $|$ %]"
+
+  - trigger: "//div"
+    replace: "<div>$|$</div>"
+    
+  - trigger: "[price]"
+    replace: "[%- USE Price -%]"
+    
+  - trigger: "|p]"
+    replace: "| $Price %]"
+    
+  - trigger: "[date]"
+    replace: "[%- USE KohaDates -%]"
+    
+  - trigger: "|d]"
+    replace: "| $KohaDates"

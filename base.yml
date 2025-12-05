@@ -1,0 +1,35 @@
+matches:
+- trigger: //done
+  replace: "Great, I'm going to go ahead and mark this ticket as resolved. \nPlease reply to the email if you'd like to reopen the ticket. \n\nThanks!\n"
+- trigger: //??
+  replace: |
+    I'm going to go ahead and close this ticket. Please let me know if you have any additional questions.
+    Thanks!
+- trigger: //newbug
+  replace: I filed a bug for this. If you were to comment on the bug it might help move it along in the process. In the meantime I'm going to move this bug over to the bug queue so we can keep track of it for you.
+- trigger: .example
+  replace: Do you have any $|$ I can take a look at?
+- trigger: .staff
+  replace: Do you have a staff barcode who I can look at to see their permissions?
+
+- trigger: //uhold
+  replace: For now I'm going to change the status of this ticket to 'On Hold' and we can revisit after the upgrade.
+- trigger: //use
+  replace: If you can let me know more about your use case I might be able to suggest a workflow.
+- trigger: //proceed
+  replace: Please let me know how you'd like to proceed.
+
+- trigger: .pe
+  replace: Many of the slips print based off the email slot rather than the print slot.
+
+- trigger: "[price]"
+  replace: "[%- USE Price -%]"
+  
+- trigger: "|p]"
+  replace: "| $Price %]"
+  
+- trigger: "[date]"
+  replace: "[%- USE KohaDates -%]"
+  
+- trigger: "|d]"
+  replace: "| $KohaDates"
