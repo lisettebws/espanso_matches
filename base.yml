@@ -22,14 +22,3 @@ matches:
 - trigger: .pe
   replace: Many of the slips print based off the email slot rather than the print slot.
 
-- trigger: "[price]"
-  replace: "[%- USE Price -%]"
-  
-- trigger: "|p]"
-  replace: "| $Price %]"
-  
-- trigger: "[date]"
-  replace: "[%- USE KohaDates -%]"
-  
-- trigger: "|d]"
-  replace: "| $KohaDates"
